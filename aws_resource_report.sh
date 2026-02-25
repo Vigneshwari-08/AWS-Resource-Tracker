@@ -1,31 +1,50 @@
 #!/bin/bash
 
-#######################
+###############################
 # Author: Vigneshwari
 # Date: 19/02/2026
+# Version: v1.0
 #
-# Version: v1
+# Description:
+# This script reports AWS resource usage including:
+# - S3 Buckets
+# - Running EC2 Instances (All Regions)
+# - Lambda Functions
+# - IAM Users
 #
-# This script will report the AWS resources usage
-######################
+# Prerequisites:
+# - AWS CLI installed
+# - AWS CLI configured (aws configure)
+###############################
 
-# AWS S3, EC2, Lambda, IAM users
+echo "===== AWS RESOURCE USAGE REPORT ====="
+echo ""
 
-# list s3 buckets
+# List S3 Buckets
+echo "S3 Buckets:"
 aws s3 ls
+echo ""
 
-# list EC2 instances
+# List Running EC2 Instances in All Regions
+echo "Running EC2 Instances Across All Regions:"
 for region in $(aws ec2 describe-regions --query "Regions[].RegionName" --output text); do
+  echo "Region: $region"
   aws ec2 describe-instances \
     --region $region \
     --filters "Name=instance-state-name,Values=running" \
-    --query "Reservations[].Instances[].{Region:'$region',ID:InstanceId,Type:InstanceType,PublicIP:PublicIpAddress}" \
+    --query "Reservations[].Instances[].{InstanceID:InstanceId,Type:InstanceType,PublicIP:PublicIpAddress}" \
     --output table
 done
+echo ""
 
-#list Lambda 
-aws lambda list-functions
+# List Lambda Functions
+echo "Lambda Functions:"
+aws lambda list-functions --query "Functions[].FunctionName" --output table
+echo ""
 
-#list IAM users
-aws iam list-users
+# List IAM Users
+echo "IAM Users:"
+aws iam list-users --query "Users[].UserName" --output table
+echo ""
 
+echo "===== REPORT COMPLETE ====="
