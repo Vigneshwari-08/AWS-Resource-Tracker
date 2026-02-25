@@ -185,3 +185,37 @@ echo -e "${YELLOW}Total Lambda:         $TOTAL_LAMBDA${NC}"
 echo -e "${YELLOW}Total IAM Users:      $TOTAL_IAM${NC}"
 
 echo -e "${GREEN}===========================================${NC}"
+
+############################
+# GMAIL ALERT (msmtp)
+############################
+
+EMAIL="eshu.vk@gmail.com"
+
+if [ "$TOTAL_EC2" -gt 0 ] || [ "$TOTAL_LAMBDA" -gt 0 ]; then
+
+  SUBJECT="AWS Resource Alert"
+  
+  BODY="AWS Resource Alert
+
+EC2 Running: $TOTAL_EC2
+Lambda Functions: $TOTAL_LAMBDA
+S3 Buckets: $TOTAL_S3
+IAM Users: $TOTAL_IAM
+
+Generated on: $(date)
+"
+
+  {
+    echo "From: $EMAIL"
+    echo "To: $EMAIL"
+    echo "Subject: $SUBJECT"
+    echo ""
+    echo "$BODY"
+  } | msmtp $EMAIL
+
+  echo "Gmail notification sent successfully."
+
+else
+  echo "No active EC2 or Lambda resources. Email skipped."
+fi
