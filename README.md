@@ -19,7 +19,7 @@ It lists:
 ## 🚀 How to Use
 
 1. Clone the repository:
-   git clone https://github.com/your-username/aws-resource-usage-report.git
+   git clone https://github.com/Vigneshwari-08/aws-resource-usage-report.git
 
 2. Make the script executable:
    chmod +x aws-resource-report.sh
