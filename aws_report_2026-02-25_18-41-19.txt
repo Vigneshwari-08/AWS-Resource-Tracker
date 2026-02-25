@@ -1,0 +1,53 @@
+===========================================
+        AWS RESOURCE USAGE REPORT
+Generated on: Wed Feb 25 18:41:19 IST 2026
+===========================================
+
+ S3 Buckets
+-------------------------------------------
+2026-02-19 11:29:11 first-buc098765
+
+ Running EC2 Instances (All Regions)
+-------------------------------------------
+Region: ap-south-2
+Region: ap-south-1
+Region: eu-north-1
+Region: eu-west-3
+Region: eu-west-2
+Region: eu-west-1
+Region: ap-northeast-3
+Region: ap-northeast-2
+Region: ap-northeast-1
+Region: ca-central-1
+Region: sa-east-1
+Region: ap-southeast-1
+Region: ap-southeast-2
+Region: eu-central-1
+Region: us-east-1
+-------------------------------------------------------
+|                  DescribeInstances                  |
++----------------------+------------------+-----------+
+|      InstanceID      |    PublicIP      |   Type    |
++----------------------+------------------+-----------+
+|  i-01549fbabd5bcbb2e |  54.234.200.196  |  t3.micro |
+|  i-032b9e9ba7d2b30ba |  54.167.33.197   |  t3.micro |
++----------------------+------------------+-----------+
+Region: us-east-2
+Region: us-west-1
+Region: us-west-2
+
+ Lambda Functions
+-------------------------------------------
+
+ IAM Users
+-------------------------------------------
+-----------
+|ListUsers|
++---------+
+|  user1  |
+|  user2  |
++---------+
+
+===========================================
+Report Completed Successfully
+===========================================
